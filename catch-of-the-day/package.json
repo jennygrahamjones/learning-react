@@ -9,6 +9,7 @@
   "dependencies": {
     "autoprefixer-stylus": "0.14.0",
     "firebase": "^5.7.0",
+    "jest-resolve": "^24.9.0",
     "prop-types": "^15.6.0",
     "re-base": "4.0.0",
     "react": "^16.6.3",
@@ -16,7 +17,8 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
     "serve": "^10.1.1",
-    "stylus": "0.54.5"
+    "stylus": "0.54.5",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "dev": "react-scripts start",

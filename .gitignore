@@ -1,4 +1,4 @@
-node_modules/
+catch-of-the-day/node_modules/
 *.zip
 .DS_Store
 .idea

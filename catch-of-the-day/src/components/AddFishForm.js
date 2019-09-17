@@ -1,6 +1,6 @@
 import React from "react";
 
-class AddFishFrom extends React.Component {
+class AddFishForm extends React.Component {
   nameRef = React.createRef();
   priceRef = React.createRef();
   statusRef = React.createRef();
@@ -52,4 +52,4 @@ class AddFishFrom extends React.Component {
   }
 }
 
-export default AddFishFrom;
+export default AddFishForm;

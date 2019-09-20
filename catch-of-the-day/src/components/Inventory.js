@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import AddFishForm from "./AddFishForm";
 import EditFishForm from "./EditFishForm";
+import { shapeOfFish } from "./Fish";
 
 class Inventory extends React.Component {
   static propTypes = {
-    fishes: PropTypes.object.isRequired,
+    fishes: PropTypes.objectOf(PropTypes.shape(shapeOfFish)),
     addFish: PropTypes.func.isRequired,
     loadSampleFishes: PropTypes.func.isRequired,
     updateFish: PropTypes.func.isRequired,

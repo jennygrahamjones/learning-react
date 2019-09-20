@@ -1,10 +1,10 @@
 import React from "react";
+import base from "../base";
 import sampleFishes from "../sample-fishes";
 import Fish from "./Fish";
 import Header from "./Header";
 import Inventory from "./Inventory";
 import Order from "./Order";
-import base from "../base";
 
 class App extends React.Component {
   state = { fishes: {}, order: {} };
@@ -43,6 +43,12 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+  deleteFish = key => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = null;
+    this.setState({ fishes });
+  };
+
   loadSampleFishes = () => {
     this.setState({ fishes: sampleFishes });
   };
@@ -50,6 +56,12 @@ class App extends React.Component {
   addToOrder = key => {
     const order = { ...this.state.order };
     order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  };
+
+  removeFromOrder = key => {
+    const order = { ...this.state.order };
+    delete order[key];
     this.setState({ order });
   };
 
@@ -69,11 +81,16 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+          removeFromOrder={this.removeFromOrder}
+        />
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
           loadSampleFishes={this.loadSampleFishes}
+          deleteFish={this.deleteFish}
           fishes={this.state.fishes}
         />
       </div>

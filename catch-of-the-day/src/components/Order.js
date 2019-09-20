@@ -1,8 +1,15 @@
+import PropTypes from "prop-types";
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { formatPrice } from "../helpers";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Order extends React.Component {
+  static propTypes = {
+    fishes: PropTypes.object.isRequired,
+    order: PropTypes.object.isRequired,
+    removeFromOrder: PropTypes.func.isRequired
+  };
+
   renderOrder = key => {
     const fish = this.props.fishes[key];
     // make sure fish are loaded before rendering

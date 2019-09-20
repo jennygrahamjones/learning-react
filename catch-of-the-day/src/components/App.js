@@ -1,10 +1,10 @@
 import React from "react";
+import base from "../base";
 import sampleFishes from "../sample-fishes";
 import Fish from "./Fish";
 import Header from "./Header";
 import Inventory from "./Inventory";
 import Order from "./Order";
-import base from "../base";
 
 class App extends React.Component {
   state = { fishes: {}, order: {} };
@@ -40,6 +40,12 @@ class App extends React.Component {
   updateFish = (key, updatedFish) => {
     const fishes = { ...this.state.fishes };
     fishes[key] = updatedFish;
+    this.setState({ fishes });
+  };
+
+  deleteFish = key => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = null;
     this.setState({ fishes });
   };
 
@@ -84,6 +90,7 @@ class App extends React.Component {
           addFish={this.addFish}
           updateFish={this.updateFish}
           loadSampleFishes={this.loadSampleFishes}
+          deleteFish={this.deleteFish}
           fishes={this.state.fishes}
         />
       </div>

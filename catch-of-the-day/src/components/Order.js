@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { formatPrice } from "../helpers";
+import { shapeOfFish } from "./Fish";
 
 class Order extends React.Component {
   static propTypes = {
-    fishes: PropTypes.object.isRequired,
+    fishes: PropTypes.objectOf(PropTypes.shape(shapeOfFish)).isRequired,
     order: PropTypes.object.isRequired,
     removeFromOrder: PropTypes.func.isRequired
   };

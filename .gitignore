@@ -1,5 +1,6 @@
 catch-of-the-day/node_modules
 sick-fits/frontend/node_modules
+sick-fits/frontend/.next/
 sick-fits/backend/node_modules
 *.zip
 .DS_Store

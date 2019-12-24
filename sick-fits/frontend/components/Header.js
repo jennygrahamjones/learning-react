@@ -1,11 +1,25 @@
-import Nav from "./Nav";
 import Link from "next/link";
 import styled from "styled-components";
+import Router from "next/router";
+import NProgress from "nprogress";
+import Nav from "./Nav";
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 const Logo = styled.h1`
   font-size: 4rem;
   margin-left: 2rem;
-  position: "relative";
+  position: relative;
   z-index: 2;
   transform: skew(-7deg);
   a {
@@ -36,18 +50,20 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.lightGrey};
+    border-bottom: 1px solid ${props => props.theme.lightgrey};
   }
 `;
 
 const Header = () => (
-  <StyledHeader className="bar">
-    <Logo>
-      <Link href="/">
-        <a>Sick fits</a>
-      </Link>
-    </Logo>
-    <Nav />
+  <StyledHeader>
+    <div className="bar">
+      <Logo>
+        <Link href="/">
+          <a>Sick Fits</a>
+        </Link>
+      </Logo>
+      <Nav />
+    </div>
     <div className="sub-bar">
       <p>Search</p>
     </div>

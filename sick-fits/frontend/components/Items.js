@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import styled from "styled-components";
 
 // it's recommended that you locate the queries in the actual file where you're doing the querying
-const ALL_ITEMS_QUERY = gql`
+export const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
     items {
       id
@@ -45,7 +45,7 @@ export default class Items extends Component {
             return (
               <ItemsList>
                 {data.items.map(item => (
-                  <p>{item.title}</p>
+                  <p key={data.items.indexOf(item)}>{item.title}</p>
                 ))}
               </ItemsList>
             );

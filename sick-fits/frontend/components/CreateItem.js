@@ -30,8 +30,8 @@ class CreateItem extends Component {
   state = {
     title: "Cool Shoes",
     description: "I love those shoes",
-    image: "dog.jpg",
-    largeImage: "large-dog.jpg",
+    image: "",
+    largeImage: "",
     price: 1000
   };
   handleChange = e => {
@@ -78,15 +78,20 @@ class CreateItem extends Component {
           >
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                placeholder="Upload an image"
-                required
-                // value={this.state.image}
-                onChange={this.uploadFile}
-              />
+              <label htmlFor="file">
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  placeholder="Upload an image"
+                  required
+                  // value={this.state.image}
+                  onChange={this.uploadFile}
+                />
+                {this.state.image && (
+                  <img src={this.state.image} alt="Upload preview" />
+                )}
+              </label>
               <label htmlFor="title">
                 Title
                 <input

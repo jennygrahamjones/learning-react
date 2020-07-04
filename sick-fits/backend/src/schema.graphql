@@ -2,9 +2,9 @@
 
 type Mutation {
   createItem(
-    title: String
-    description: String
-    price: Int
+    title: String!
+    description: String!
+    price: Int!
     image: String
     largeImage: String
   ): Item!

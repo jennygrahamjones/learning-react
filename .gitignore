@@ -7,3 +7,7 @@ sick-fits/backend/node_modules
 .idea
 notes.md
 catch-of-the-day/build/
+slick-slices/gatsby/node_modules
+slick-slices/sanity/node_modules
+slick-slices/gatsby/.cache/
+slick-slices/gatsby/public

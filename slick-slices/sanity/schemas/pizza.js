@@ -1,4 +1,5 @@
 import { FaPizzaSlice as icon } from "react-icons/fa";
+import topping from "./topping";
 
 // docs for schema types: https://www.sanity.io/docs/schema-types
 
@@ -43,5 +44,32 @@ export default {
         // TODO: add custom input component
       },
     },
+    {
+      name: "toppings",
+      title: "Toppings",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "topping" }] }],
+      description: "Toppings on the pizza",
+    },
   ],
+  preview: {
+    select: {
+      title: "name",
+      media: "image",
+      topping0: "toppings.0.name",
+      topping1: "toppings.1.name",
+      topping2: "toppings.2.name",
+      topping3: "toppings.3.name",
+    },
+    prepare: ({ title, media, ...toppings }) => {
+      // filter undefined toppings out
+      const tops = Object.values(toppings).filter(Boolean);
+      // return the preview object for the pizza
+      return {
+        title,
+        media,
+        subtitle: tops.join(", "),
+      };
+    },
+  },
 };

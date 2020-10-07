@@ -1,5 +1,7 @@
 import { FaPizzaSlice as icon } from "react-icons/fa";
 
+// docs for schema types: https://www.sanity.io/docs/schema-types
+
 export default {
   // computer name
   name: "pizza",

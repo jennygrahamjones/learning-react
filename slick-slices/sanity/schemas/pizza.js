@@ -1,5 +1,5 @@
 import { FaPizzaSlice as icon } from "react-icons/fa";
-import topping from "./topping";
+import PriceInput from '../components/PriceInput'
 
 // docs for schema types: https://www.sanity.io/docs/schema-types
 
@@ -38,6 +38,7 @@ export default {
       name: "price",
       title: "Price",
       type: "number",
+      inputComponent: PriceInput,
       description: "Price of the pizza in cents",
       options: {
         validation: (Rule) => Rule.min(1000).max(5000), // can contain any logic

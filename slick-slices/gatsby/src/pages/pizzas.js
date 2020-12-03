@@ -27,6 +27,7 @@ export const query = graphql`
         }
         image {
           asset {
+            # this could be something like fixed(width: 200, height: 200) with GatsbySanityImageFixed
             fluid(maxWidth: 400) {
               ...GatsbySanityImageFluid
             }

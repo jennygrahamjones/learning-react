@@ -19,7 +19,7 @@ const ToppingsStyles = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    .active {
+    &[aria-current='page'] {
       background: var(--yellow);
     }
   }
@@ -80,6 +80,10 @@ function ToppingsFilter() {
 
   return (
     <ToppingsStyles>
+      <Link to="/pizzas">
+        <span className="all">All</span>
+        <span className="count">{pizzas.nodes.length}</span>
+      </Link>
       {toppingsWithCounts.map((topping) => (
         <Link
           to={`/topping/${topping.name.toLowerCase().replaceAll(' ', '-')}`}

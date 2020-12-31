@@ -1,4 +1,5 @@
 import path from 'path';
+import fetch from 'isomorphic-fetch';
 
 async function turnPizzasIntoPagaes({ graphql, actions }) {
   // 1. get template for the page
@@ -59,6 +60,41 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   // 4. pass topping data to pizza.js
 }
 
+// pulls the data from the external API into the GraphQL api,
+// automatically generating allBeers and beer queries :o
+async function fetchBeersAndTurnIntoNodes({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) {
+  // 1. fetch list of beers
+  const res = await fetch('https://sampleapis.com/beers/api/ale');
+  const beers = await res.json();
+  // 2. loop over each one
+  for (const beer of beers) {
+    // create a node
+    const nodeMeta = {
+      id: createNodeId(`beer-${beer.name}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Beer',
+        mediaType: 'application/json', // allows other plugins to find this media
+        contentDigest: createContentDigest(beer),
+      },
+    };
+    // 3. create node for beer
+    actions.createNode({ ...beer, ...nodeMeta });
+  }
+}
+
+// https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes
+export async function sourceNodes(params) {
+  // fetch a list of beers and source them into our gatsby API!
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
+}
+
+// https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages
 export async function createPages(params) {
   // create pages dynamically
   // wait for all promises to be resolved before finishing this function
